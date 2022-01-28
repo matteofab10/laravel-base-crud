@@ -33,10 +33,6 @@
       <label for="type" class="form-label">Tipo</label>
       <input type="text" class="form-control" name="type" id="type" placeholder="type">
     </div>
-    <div class="mb-3">
-      <label for="slug" class="form-label">Slug</label>
-      <input type="text" class="form-control" name="slug" id="slug" placeholder="slug">
-    </div>
 
     <button type="submit" class="btn btn-primary">INVIA</button>
     <button type="reset" class="btn btn-danger">RESET</button>
