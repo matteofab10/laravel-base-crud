@@ -22,32 +22,95 @@
     @method('PUT')
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $comic->title) }}" name="title" id="title" placeholder="title">
+      <input 
+      type="text" 
+      class="form-control @error('title') is-invalid @enderror" 
+      value="{{ old('title', $comic->title) }}" 
+      name="title" 
+      id="title" 
+      placeholder="title">
       @error('title')
         <p class="invalid-feedback">
           {{ $message }}
         </p>
       @enderror
     </div>
+
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
-      <textarea class="form-control" name="description" id="description" >{{$comic->description}}</textarea>
+      <textarea 
+      class="form-control @error('description') is-invalid @enderror" 
+      name="description" 
+      id="description" >{{ old('description', $comic->description )}}</textarea>
+      @error('description')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="text" class="form-control" name="image" value="{{$comic->image}}" id="image" placeholder="image-url">
+      <input 
+      type="text" 
+      class="form-control @error('image') is-invalid @enderror" 
+      value="{{ old('image', $comic->image) }}"
+      name="image"  
+      id="image" 
+      placeholder="image-url">
+      @error('image')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="price" class="form-label">Price</label>
-      <input type="number" class="form-control" name="price" value="{{$comic->price}}" id="price" placeholder="price">
+      <input 
+      type="number" 
+      class="form-control @error('price') is-invalid @enderror" 
+      value="{{ old('price', $comic->price) }}"
+      name="price"  
+      id="price" 
+      placeholder="price">
+      @error('price')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="series" class="form-label">Series</label>
-      <input type="text" class="form-control" name="series" value="{{$comic->series}}" id="series" placeholder="series">
+      <input 
+      type="text" 
+      class="form-control @error('series') is-invalid @enderror"
+      value="{{ old('series', $comic->series) }}"
+      name="series" 
+      id="series" 
+      placeholder="series">
+      @error('series')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="type" class="form-label">Tipo</label>
-      <input type="text" class="form-control" name="type" value="{{$comic->type}}" id="type" placeholder="type">
+      <input 
+      type="text" 
+      class="form-control @error('type') is-invalid @enderror" 
+      value="{{ old('type', $comic->type) }}"
+      name="type"
+      id="type" 
+      placeholder="type">
+      @error('type')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
 
     <button type="submit" class="btn btn-primary">INVIA</button>
