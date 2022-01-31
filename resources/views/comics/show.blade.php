@@ -5,17 +5,22 @@
 
 <div class="container">
 
-  <h2>{{$comic->title}}</h2>
-  <p>{{$comic->description}}</p>
-  <img src="{{$comic->image}}" alt="image-url">
-  <p>{{$comic->price}} &euro;</p>
-  <p>{{$comic->series}}</p>
-  <p>{{$comic->type}}</p>
+  <div class="card mr-3 mb-5" style="width: 18rem;">
+    <img src="{{$comic->image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Title: {{$comic->title}}</h5>
+      <p class="card-text">Series: {{$comic->series}}</p>
+      <p class="card-text">Price: {{$comic->price}} &euro; </p>
+      <p class="card-text">Type: {{$comic->type}}</p>
+      <p class="card-text">Type: {{$comic->description}}</p>
+
+      <button class="btn btn-primary"><a class="text-white" href="{{route ('comics.index')}}">Torna indietro</a></button>
+      <button class="btn btn-secondary"><a class="text-white" href="{{route ('comics.edit', $comic)}}">Edit</a></button>
+  </div>
 
 
 
-  <button class="btn btn-primary"><a class="text-white" href="{{route ('comics.index')}}">Torna indietro</a></button>
-  <button class="btn btn-secondary"><a class="text-white" href="{{route ('comics.edit', $comic)}}">Edit</a></button>
+  
 
 
 
