@@ -15,7 +15,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-        $comicList = Comic::paginate(1);
+        $comicList = Comic::orderBy('id', 'desc')->paginate(1);
 
         // dump($comicList);
         
@@ -40,6 +40,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate( $this->validationData(), $this->validationErrors());
+        
         $data = $request->all();
 
         $new_comic = new Comic();
@@ -86,6 +88,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $request->validate( $this->validationData(), $this->validationErrors());
+
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         $comic->update($data);
@@ -102,5 +106,36 @@ class ComicController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validationData(){
+        return [
+            'title' => "required|max:80|min:2",
+            'description' => 'required|min:5',
+            'type' => 'required|max:30|min:2',
+            'image' => 'required|max:255|min:10',
+            'price' => 'required|numeric|min:1',
+            'series' => 'required|max:50|min:2',
+        ];
+    }
+
+    private function validationErrors(){
+        return [
+            'title.required' => 'Il titolo è un campo obbligatorio',
+            'title.max' => 'Il numero di caratteri consentito è di :max caratteri',
+            'title.min' => 'Il numero minimo di caratteri è di :min caratteri',
+            'description.required' => 'La descrizione è obbligatoria',
+            'description.min' => 'Sono richiesti minimo :min caratteri',
+            'series.required' => 'La serie è un campo obbligatorio',
+            'series.max' => 'Il numero di caratteri consentito è di :max caratteri',
+            'series.min' => 'Il numero minimo di caratteri è di :min caratteri',
+            'price.required' => 'Il prezzo è un campo obbligatorio',
+            'image.required' => 'Url immagine obbligatorio',
+            'image.max' => 'Il numero di caratteri consentito è di :max caratteri',
+            'image.min' => 'Il numero minimo di caratteri è di :min caratteri',
+            'type.required' => 'Il tipo è un campo obbligatorio',
+            'type.max' => 'Il numero di caratteri consentito è di :max caratteri',
+            'type.min' => 'Il numero minimo di caratteri è di :min caratteri',
+        ];
     }
 }

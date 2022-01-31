@@ -5,6 +5,16 @@
 
 <div class="container">
 
+  @if ($errors->any())
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+  @endif
+
   <h1>Edit: {{$comic->title}}</h1>
 
   <form action="{{route('comics.update', $comic)}}" method="POST">
@@ -12,7 +22,12 @@
     @method('PUT')
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control" name="title" value="{{$comic->title}}" id="title" placeholder="title">
+      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $comic->title) }}" name="title" id="title" placeholder="title">
+      @error('title')
+        <p class="invalid-feedback">
+          {{ $message }}
+        </p>
+      @enderror
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
