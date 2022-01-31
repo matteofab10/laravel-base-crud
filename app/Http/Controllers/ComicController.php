@@ -15,7 +15,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-        $comicList = Comic::orderBy('id', 'desc')->paginate(1);
+        $comicList = Comic::orderBy('id', 'desc')->paginate(6);
 
         // dump($comicList);
         
